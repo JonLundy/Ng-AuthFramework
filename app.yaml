@@ -8,20 +8,30 @@ handlers:
 - url: /favicon\.ico
   static_files: favicon.ico
   upload: favicon\.ico
+  http_headers:
+    strict-transport-security: max-age=16070400
 
 - url: /api/.*
   script: main.php
 
 - url: /lib
   static_dir: lib
+  http_headers:
+    strict-transport-security: max-age=16070400
 
 - url: /(^\.)?
   static_files: index.html
   upload: index.html
+  http_headers:
+    strict-transport-security: max-age=16070400
 
 - url: /(.*?)/
   static_files: index.html
   upload: index.html
+  http_headers:
+    strict-transport-security: max-age=16070400
   
 - url: /
   static_dir: app
+  http_headers:
+    strict-transport-security: max-age=16070400

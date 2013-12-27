@@ -3,12 +3,18 @@
 $REQ = ltrim(strrchr(rtrim($_SERVER['REQUEST_URI'],'/'),'/'),'/');
 
 header('Content-Type: application/json');
-
+header('strict-transport-security: max-age=16070400');
 
 switch($REQ) {
     case 'whoami':
-        if (array_key_exists('MY-AUTH', $_COOKIE))
-            echo <<<BLOCK
+        if (!array_key_exists('MY-AUTH', $_COOKIE)) {
+            echo '[]';
+            break;
+        }
+        
+        // Add check to make sure XSRF-TOKEN header matches value in MY-AUTH cookie.
+        
+        echo <<<BLOCK
 {
     "person_id":123456,
     "user_ident":"X0123456",
@@ -21,8 +27,6 @@ switch($REQ) {
 }
 
 BLOCK;
-    else echo '[]';
-
 
     break;
     
