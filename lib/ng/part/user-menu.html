@@ -1,0 +1,17 @@
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+    <i class="glyphicon glyphicon-user icon-white"></i>
+    <span ng-show="guest(true)">Guest User</span>
+    <span ng-show="!guest(true)" ng-bind="user_data.name_display"></span>
+    <b class="caret"></b>
+  </a> 
+  <ul class="dropdown-menu" ng-show="guest(true)">
+    <li>Currently not signed in.</li>
+    <li class="divider"></li>
+    <li><a ng-href="/api/login"><i class='glyphicon glyphicon-off'></i> Login with FakeAUTH</a></li>
+  </ul><ul class="dropdown-menu" ng-hide="guest(true)">
+    <li>Currently signed in as: <br/> {{user_data.name_display}} ({{user_data.user_ident}})</li> 
+    <li class="divider"></li>
+    <li>  <a ng-href="/api/logout"><i class=icon-off></i> Sign out</a> </li>
+  </ul>
+</li>

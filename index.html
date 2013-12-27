@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en" ng-app='my-app'>
+<head>
+
+<link href="//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css" rel="stylesheet">
+<link href="//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap-theme.min.css" rel="stylesheet">
+<style>
+    header h2 { text-align: right; }
+</style>
+<!--[if lt IE 9]>
+	<script type="text/javascript">
+
+		/** 
+		 * Create HTML5 elements for IE's sake
+		 *  Reference: http://diveintohtml5.info/semantics.html
+		**/
+		
+		var tags = ("abbr,article,aside,audio,canvas,datalist,details,figure,footer," +
+		            "header,hgroup,mark,menu,meter,nav,output,progress,section,time," +
+		            "video,ng-switch,ng-view").split(',');
+		for(var i in tags){ document.createElement(tags[i]); }
+	</script>
+<![endif]--> 
+	
+</head>
+<body>
+
+<!-- directive: service-menu -->
+
+<div class="container">
+	<header class='row'>
+		<hgroup class='row'>
+			<h1 class='col-xs-6'>
+				Main Template 
+			</h1>		
+			<h2 class='col-xs-6'><span ng-bind='$env.app_name'></span></h2>
+		</hgroup>
+		
+		<ng-switch on='guest()'>
+    	  <nav ng-switch-when="true"></nav>	
+		  
+		  <div style="z-index:1" class="navbar navbar-default" ng-switch-when="false">
+            <div class="navbar-collapse collapse" app-menu>
+            </div><!--/.nav-collapse -->
+          </div>
+
+		</ng-switch>
+		
+	</header>
+
+    <section ng-show="loading">
+        <div style='height:560px; text-align:center'>
+            <img src='/lib/ng/img/loading.gif' width="35"  alt="Go.Utah.edu" />
+        </div>	
+        <hr/>
+        <div style='text-align:center'>
+            <p>For security reasons, 
+               please Log Out and Exit your web browser when you are done accessing services that require authentication!</p>
+        </div>
+    </section>
+
+	<ng-switch ng-hide=loading on='guest()'>
+       <section ng-switch-when="true"  ng-include="'/lib/ng/part/guest.html'"></section>
+       <section ng-switch-when="false"  ng-view></section>
+    </ng-switch>
+</div> 
+
+
+
+<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.8/angular.min.js"></script>
+<script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+<script src="//netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
+<script src="/lib/ng/common.js"></script>
+<script src="app.js"></script>
+
+
+</body>
+</html>

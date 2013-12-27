@@ -1,0 +1,27 @@
+<div class="navbar navbar-default navbar-static-top navbar-hrit">
+  <div class="">
+    <div class="navbar-header">
+      <a class="navbar-brand" ng-href="{{$env.menu.link}}">{{$env.menu.title}}</a>
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+    <div class="navbar-collapse collapse">
+
+	    <ul class="nav navbar-nav">
+	        <li class="dropdown" ng-repeat="hi in $env.menu.items" ng-switch on="hi.items == Undefined">
+	            <a ng-show="hi.items == Undefined" ng-href="{{hi.link}}" title="{{hi.title}}" ng-bind="hi.short"></a>
+	            <a ng-hide="hi.items == Undefined" class="dropdown-toggle" role="button" data-target="#" data-toggle="dropdown">
+	              {{hi.short}} <b class="caret"></b>
+	            </a>
+	            <ul ng-switch-when="false" class="dropdown-menu"><li ng-repeat="si in hi.items"><a ng-href="{{si.link}}">{{si.title}}</a></li></ul>
+	        </li>
+	    </ul>
+	    <ul class="nav navbar-nav navbar-right"><li class="divider-vertical"></li><!-- directive: user-menu --></ul>
+
+      
+    </div><!--/.nav-collapse -->
+  </div>
+</div>

@@ -1,0 +1,5 @@
+<ul class="nav navbar-nav">
+  <li ng-repeat="si in items" ng-class="{true:'active'}[Active == $index]">
+    <a ng-href="{{si.link}}">{{si.title}}</a>
+   </li>
+</ul>
